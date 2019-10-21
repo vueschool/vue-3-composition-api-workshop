@@ -35,12 +35,12 @@
       }
     },
     setup (props) {
-      const {user, loadingState} = userFetchGithubUser(props)
+      const {user, loadingState} = useFetchGithubUser(props)
       return {user, loadingState}
     }
   }
 
-  function userFetchGithubUser(props) {
+  function useFetchGithubUser(props) {
     let user = ref({})
     let loadingState = ref('loading')
     axios({
