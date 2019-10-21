@@ -23,33 +23,29 @@
 
 <script>
   import axios from 'axios'
+  import {ref} from '@vue/composition-api'
   export default {
-    setup (props) {
-      console.log(props.username)
-    },
     props: {
       username: {
         type: String,
         required: true
       }
     },
-    data() {
-      return {
-        user: {}
-      }
-    },
-    created() {
+    setup (props) {
+      console.log(props)
+      let user = ref({})
       axios({
         method: 'GET',
-        url: `https://api.github.com/users/${this.username}?token=94b83ad8d43b186ff66c5b81b56333a11896f65d`,
+        url: `https://api.github.com/users/${props.username}?token=94b83ad8d43b186ff66c5b81b56333a11896f65d`,
         headers: {
           Authorization: `Bearer 94b83ad8d43b186ff66c5b81b56333a11896f65d`,
           "Content-Type": "application/json"
         }
       })
         .then(response => {
-          this.user = response.data
+            user.value = response.data
         })
+      return {user}
     }
   }
 </script>
