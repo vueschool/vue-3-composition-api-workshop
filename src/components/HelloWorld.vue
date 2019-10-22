@@ -31,7 +31,8 @@ export default {
   },
   data () {
     return {
-      usernames: ['hootlex', 'rahaug', 'sdras', 'akryum']
+      usernames: ['hootlex']
+      // usernames: ['hootlex', 'rahaug', 'sdras', 'akryum']
     }
   }
 }
