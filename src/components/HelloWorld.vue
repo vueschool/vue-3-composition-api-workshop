@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import GithubUserCardCompo from './GithubUserCardCompo'
+  import GithubUserCardCompo from './CharacterCard'
   // import GithubUserCard from './GithubUserCard'
 export default {
   name: 'HelloWorld',
