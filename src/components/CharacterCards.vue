@@ -1,15 +1,17 @@
 <template>
-  <div id="app" class="ui container cards">
+  <div>
     <div>
       Order by
-      <button @click="setOrderKey('name')">Name</button>
-      <button @click="setOrderKey('id')">Id</button>
+      <button class="ui blue button" @click="setOrderKey('name')">Name</button>
+      <button class="ui orange button" @click="setOrderKey('id')">Id</button>
     </div>
-    <div
-      v-for="character in charactersOrdered"
-      :key="character.id"
-      class="ui card"
-    >
+    <div class="ui divider"></div>
+    <div class="ui container cards">
+      <div
+        v-for="character in charactersOrdered"
+        :key="character.id"
+        class="ui card"
+      >
         <div class="image">
           <img :src="character.image">
         </div>
@@ -22,8 +24,11 @@
         <div class="extra content">
           {{character.species}}
         </div>
+      </div>
     </div>
-    <span v-if="loadingState === 'loading'">Loading characters...</span>
+
+    <div v-if="loadingState === 'loading'">Loading characters...
+    <img src="/spinner.svg" alt=""></div>
   </div>
 </template>
 
@@ -46,21 +51,20 @@
     methods: {
       setOrderKey(key) {
         this.orderKey = key
+      },
+      fetchAllCharacters () {
+        this.loadingState = 'loading'
+        axios.get('https://rickandmortyapi.com/api/character')
+          .then(response => {
+            setTimeout(() => {
+              this.loadingState = 'success'
+              this.characters = response.data.results
+            }, 1000)
+          })
       }
     },
     created () {
-      this.loadingState = 'loading'
-      axios({
-        method: 'GET',
-        url: `https://rickandmortyapi.com/api/character`
-      })
-        .then(response => {
-          setTimeout(() => {
-            console.log('🎉')
-            this.loadingState = 'success'
-            this.characters = response.data.results
-          }, 1000)
-        })
+      this.fetchAllCharacters()
     }
   }
 
