@@ -1,37 +1,26 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <div id="app" class="ui container cards">
-<!--      <GithubUserCard-->
-<!--        v-for="username in usernames"-->
-<!--        :username="username"-->
-<!--        :key="username"-->
-<!--      />-->
 
-      <GithubUserCardCompo
-      v-for="username in usernames"
-      :username="username"
-      :key="username"
-    />
-    </div>
+      <CharacterCards />
   </div>
 </template>
 
 <script>
-  import GithubUserCardCompo from './CharacterCard'
+  import CharacterCards from './CharacterCards'
   // import GithubUserCard from './GithubUserCard'
 export default {
   name: 'HelloWorld',
   components: {
     // GithubUserCard,
-    GithubUserCardCompo
+    CharacterCards
   },
   props: {
     msg: String
   },
   data () {
     return {
-      usernames: ['hootlex']
+      ids: [99]
       // usernames: ['hootlex', 'rahaug', 'sdras', 'akryum']
     }
   }
