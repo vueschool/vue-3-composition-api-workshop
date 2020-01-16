@@ -35,7 +35,7 @@
 <script>
   import axios from 'axios'
   import orderBy from 'lodash.orderby'
-  import {ref} from '@vue/composition-api'
+  import {ref, computed} from '@vue/composition-api'
 
   const useFetchAllCharacters = () => {
     const loadingState = ref(null)
@@ -55,37 +55,20 @@
     return {loadingState, characters, fetchAllCharacters}
   }
 
+  const useOrdering = elements => {
+    const orderKey = ref('id')
+    const ordered = computed(() => orderBy(elements.value, orderKey.value))
+
+    const setOrderKey = key => orderKey.value = key
+
+    return {ordered, orderKey, setOrderKey}
+  }
+
   export default {
     setup () {
       const {loadingState, characters, fetchAllCharacters} = useFetchAllCharacters()
-      return {loadingState, characters, fetchAllCharacters}
-    },
-    data () {
-      return {
-        // characters: [],
-        // loadingState: null,
-        orderKey: 'id'
-      }
-    },
-    computed: {
-      charactersOrdered() {
-        return orderBy(this.characters, this.orderKey)
-      }
-    },
-    methods: {
-      setOrderKey(key) {
-        this.orderKey = key
-      },
-      // fetchAllCharacters () {
-      //   this.loadingState = 'loading'
-      //   axios.get('https://rickandmortyapi.com/api/character')
-      //     .then(response => {
-      //       setTimeout(() => {
-      //         this.loadingState = 'success'
-      //         this.characters = response.data.results
-      //       }, 1000)
-      //     })
-      // }
+      const {ordered: charactersOrdered, setOrderKey} = useOrdering(characters)
+      return {loadingState, characters, fetchAllCharacters, charactersOrdered, setOrderKey}
     },
     created () {
       this.fetchAllCharacters()
