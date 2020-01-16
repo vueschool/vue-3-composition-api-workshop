@@ -35,11 +35,29 @@
 <script>
   import axios from 'axios'
   import orderBy from 'lodash.orderby'
+  import {ref} from '@vue/composition-api'
   export default {
+    setup () {
+      const loadingState = ref(null)
+      const characters = ref([])
+
+      const fetchAllCharacters = () => {
+        loadingState.value = 'loading'
+        axios.get('https://rickandmortyapi.com/api/character')
+          .then(response => {
+            setTimeout(() => {
+              loadingState.value = 'success'
+              characters.value = response.data.results
+            }, 1000)
+          })
+      }
+
+      return {loadingState, characters, fetchAllCharacters}
+    },
     data () {
       return {
-        characters: [],
-        loadingState: null,
+        // characters: [],
+        // loadingState: null,
         orderKey: 'id'
       }
     },
@@ -52,16 +70,16 @@
       setOrderKey(key) {
         this.orderKey = key
       },
-      fetchAllCharacters () {
-        this.loadingState = 'loading'
-        axios.get('https://rickandmortyapi.com/api/character')
-          .then(response => {
-            setTimeout(() => {
-              this.loadingState = 'success'
-              this.characters = response.data.results
-            }, 1000)
-          })
-      }
+      // fetchAllCharacters () {
+      //   this.loadingState = 'loading'
+      //   axios.get('https://rickandmortyapi.com/api/character')
+      //     .then(response => {
+      //       setTimeout(() => {
+      //         this.loadingState = 'success'
+      //         this.characters = response.data.results
+      //       }, 1000)
+      //     })
+      // }
     },
     created () {
       this.fetchAllCharacters()
