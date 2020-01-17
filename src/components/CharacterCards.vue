@@ -54,6 +54,7 @@
 <script>
   import useFetchResource from "../use/useFetchResource";
   import useOrdering from "../use/useOrdering";
+  import useGlobalEvent from "../use/useGlobalEvent";
 
   export default {
     setup () {
@@ -61,6 +62,10 @@
       const {elements: locations, fetchResource: fetchAllLocations} = useFetchResource('https://rickandmortyapi.com/api/location')
       const {ordered: charactersOrdered, setOrderKey: setCharactersOrderKey} = useOrdering(characters)
       const {ordered: locationsOrdered, setOrderKey: setLocationsOrderKey} = useOrdering(locations)
+
+      useGlobalEvent('keydown', () => characters.value.shift())
+
+
       return {loadingState, characters, fetchAllCharacters, charactersOrdered, setCharactersOrderKey, locations, locationsOrdered, fetchAllLocations, setLocationsOrderKey}
     },
     methods: {
