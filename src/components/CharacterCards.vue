@@ -26,8 +26,27 @@
         </div>
       </div>
     </div>
+    <h1>Locations</h1>
+    <div class="ui divider"></div>
+    <div class="ui container cards">
+      <div
+        v-for="location in locations"
+        :key="location.id"
+        class="ui card"
+      >
+        <div class="content">
+          <span class="header">{{location.name}}</span>
+          <div class="meta">
+            <span class="date">Dimension: {{location.dimension}}</span>
+          </div>
+        </div>
+        <div class="extra content">
+          {{location.type}}
+        </div>
+      </div>
+    </div>
 
-    <div v-if="loadingState === 'loading'">Loading characters...
+    <div v-if="loadingState === 'loading'">Loading elements...
     <img src="/spinner.svg" alt=""></div>
   </div>
 </template>
@@ -39,11 +58,13 @@
   export default {
     setup () {
       const {loadingState, elements: characters, fetchResource: fetchAllCharacters} = useFetchResource('https://rickandmortyapi.com/api/character')
+      const {elements: locations, fetchResource: fetchAllLocations} = useFetchResource('https://rickandmortyapi.com/api/location')
       const {ordered: charactersOrdered, setOrderKey} = useOrdering(characters)
-      return {loadingState, characters, fetchAllCharacters, charactersOrdered, setOrderKey}
+      return {loadingState, characters, fetchAllCharacters, charactersOrdered, setOrderKey, locations, fetchAllLocations}
     },
     created () {
       this.fetchAllCharacters()
+      this.fetchAllLocations()
     }
   }
 
