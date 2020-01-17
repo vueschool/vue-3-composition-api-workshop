@@ -33,12 +33,12 @@
 </template>
 
 <script>
-  import useFetchAllCharacters from "../use/useFetchAllCharacters";
+  import useFetchResource from "../use/useFetchResource";
   import useOrdering from "../use/useOrdering";
 
   export default {
     setup () {
-      const {loadingState, characters, fetchAllCharacters} = useFetchAllCharacters()
+      const {loadingState, elements: characters, fetchResource: fetchAllCharacters} = useFetchResource('https://rickandmortyapi.com/api/character')
       const {ordered: charactersOrdered, setOrderKey} = useOrdering(characters)
       return {loadingState, characters, fetchAllCharacters, charactersOrdered, setOrderKey}
     },
