@@ -1,5 +1,6 @@
 <template>
   <div>
+    <VideoPlayer/>
     <div>
       Order by
       <button class="ui blue button" @click="setOrderKey('name')">Name</button>
@@ -55,6 +56,7 @@
   import useFetchResource from "../use/useFetchResource";
   import useOrdering from "../use/useOrdering";
   import useGlobalEvent from "../use/useGlobalEvent";
+  import VideoPlayer from './VideoPlayer'
 
   export default {
     setup () {
@@ -67,6 +69,9 @@
 
 
       return {loadingState, characters, fetchAllCharacters, charactersOrdered, setCharactersOrderKey, locations, locationsOrdered, fetchAllLocations, setLocationsOrderKey}
+    },
+    components: {
+      VideoPlayer
     },
     methods: {
       setOrderKey (key) {
