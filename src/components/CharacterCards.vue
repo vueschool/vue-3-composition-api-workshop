@@ -30,7 +30,7 @@
     <div class="ui divider"></div>
     <div class="ui container cards">
       <div
-        v-for="location in locations"
+        v-for="location in locationsOrdered"
         :key="location.id"
         class="ui card"
       >
@@ -59,8 +59,15 @@
     setup () {
       const {loadingState, elements: characters, fetchResource: fetchAllCharacters} = useFetchResource('https://rickandmortyapi.com/api/character')
       const {elements: locations, fetchResource: fetchAllLocations} = useFetchResource('https://rickandmortyapi.com/api/location')
-      const {ordered: charactersOrdered, setOrderKey} = useOrdering(characters)
-      return {loadingState, characters, fetchAllCharacters, charactersOrdered, setOrderKey, locations, fetchAllLocations}
+      const {ordered: charactersOrdered, setOrderKey: setCharactersOrderKey} = useOrdering(characters)
+      const {ordered: locationsOrdered, setOrderKey: setLocationsOrderKey} = useOrdering(locations)
+      return {loadingState, characters, fetchAllCharacters, charactersOrdered, setCharactersOrderKey, locations, locationsOrdered, fetchAllLocations, setLocationsOrderKey}
+    },
+    methods: {
+      setOrderKey (key) {
+        this.setCharactersOrderKey(key)
+        this.setLocationsOrderKey(key)
+      }
     },
     created () {
       this.fetchAllCharacters()
