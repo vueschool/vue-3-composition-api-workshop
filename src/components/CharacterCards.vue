@@ -33,36 +33,8 @@
 </template>
 
 <script>
-  import axios from 'axios'
-  import orderBy from 'lodash.orderby'
-  import {ref, computed} from '@vue/composition-api'
-
-  const useFetchAllCharacters = () => {
-    const loadingState = ref(null)
-    const characters = ref([])
-
-    const fetchAllCharacters = () => {
-      loadingState.value = 'loading'
-      axios.get('https://rickandmortyapi.com/api/character')
-        .then(response => {
-          setTimeout(() => {
-            loadingState.value = 'success'
-            characters.value = response.data.results
-          }, 1000)
-        })
-    }
-
-    return {loadingState, characters, fetchAllCharacters}
-  }
-
-  const useOrdering = elements => {
-    const orderKey = ref('id')
-    const ordered = computed(() => orderBy(elements.value, orderKey.value))
-
-    const setOrderKey = key => orderKey.value = key
-
-    return {ordered, orderKey, setOrderKey}
-  }
+  import useFetchAllCharacters from "../use/useFetchAllCharacters";
+  import useOrdering from "../use/useOrdering";
 
   export default {
     setup () {
