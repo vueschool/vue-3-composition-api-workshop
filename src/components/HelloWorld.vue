@@ -7,8 +7,7 @@
 </template>
 
 <script>
-  import CharacterCards from './CharacterCards'
-  // import GithubUserCard from './GithubUserCard'
+import CharacterCards from './CharacterCards'
 export default {
   name: 'HelloWorld',
   components: {
