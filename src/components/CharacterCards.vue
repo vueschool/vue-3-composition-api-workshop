@@ -67,66 +67,6 @@
       this.fetchAllCharacters()
     }
   }
-
-
-  // import {ref} from '@vue/composition-api'
-  // export default {
-  //   props: {
-  //     id: {
-  //       type: Number,
-  //       required: true
-  //     }
-  //   },
-  //   setup (props) {
-  //     console.log(props)
-  //     const {user, loadingState, fetchCharacter} = useFetchCharacter()
-  //     return {user, loadingState, fetchCharacter}
-  //   },
-  //   created () {
-  //     this.fetchCharacter(this.id)
-  //   }
-  // }
-  //
-  // function useFetchData() {
-  //   let results = ref([])
-  //   let loadingState = ref('loading')
-  //
-  //   const fetchCharacter = (id) => {
-  //     axios({
-  //       method: 'GET',
-  //       url: `https://rickandmortyapi.com/api/character/${id}`
-  //     })
-  //       .then(response => {
-  //         setTimeout(() => {
-  //           console.log('🎉')
-  //           loadingState.value = 'success'
-  //           user.value = response.data
-  //         }, 1000)
-  //       })
-  //   }
-  //
-  //   return {user, loadingState, fetchCharacter}
-  // }
-  // function useFetchCharacter() {
-  //   let user = ref({})
-  //   let loadingState = ref('loading')
-  //
-  //   const fetchCharacter = (id) => {
-  //     axios({
-  //       method: 'GET',
-  //       url: `https://rickandmortyapi.com/api/character/${id}`
-  //     })
-  //       .then(response => {
-  //         setTimeout(() => {
-  //           console.log('🎉')
-  //           loadingState.value = 'success'
-  //           user.value = response.data
-  //         }, 1000)
-  //       })
-  //   }
-  //
-  //   return {user, loadingState, fetchCharacter}
-  // }
 </script>
 
 <style scoped>

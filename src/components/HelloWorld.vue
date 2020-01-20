@@ -12,7 +12,6 @@
 export default {
   name: 'HelloWorld',
   components: {
-    // GithubUserCard,
     CharacterCards
   },
   props: {
@@ -21,7 +20,6 @@ export default {
   data () {
     return {
       ids: [99]
-      // usernames: ['hootlex', 'rahaug', 'sdras', 'akryum']
     }
   }
 }
