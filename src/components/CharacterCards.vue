@@ -27,8 +27,10 @@
       </div>
     </div>
 
-    <div v-if="loadingState === 'loading'">Loading characters...
-    <img src="/spinner.svg" alt=""></div>
+    <div v-if="loadingState === 'loading'">
+      Loading characters...
+      <img src="/spinner.svg" alt="loading">
+    </div>
   </div>
 </template>
 

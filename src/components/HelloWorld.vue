@@ -1,7 +1,6 @@
 <template>
   <div class="hello">
     <h1 class="ui header">{{ msg }}</h1>
-
       <CharacterCards />
   </div>
 </template>
