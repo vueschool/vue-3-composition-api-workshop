@@ -1,4 +1,4 @@
-# vue2composition
+# Vue 3 Composition API workshop
 
 ## Project setup
 ```
